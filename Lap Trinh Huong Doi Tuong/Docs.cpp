@@ -237,4 +237,26 @@ int main()
 }
 */
 
+/*
 // 17. Point - Gan con tro
+int main()
+{
+    int x = 1;
+    int *p1, *p2;
+    p1 = &x;
+    cout << *p1 << " " << *p2 << " " << x << endl;
+    ++*p1;
+    // *p++; // ???
+    cout << *p1 << " " << *p2 << " " << x << endl;
+    p2 = p1;
+    ++x;
+    cout << *p1 << " " << *p2 << " " << x << endl;
+    return 0;
+}
+*/
+
+/*
+// 18. Point - Use typedef: typedef int *Q
+*/
+
+
