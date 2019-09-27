@@ -15,12 +15,14 @@ void Swap(int &a, int &b);
 int main()
 {
     // Khai bao bien
-    int dk = 1;
+    int dk;
     int n, k, valueInsert, valueSearch, valueReplace;
-    int *p = new int[n];
+    int *p;
 
     // Gan gia tri ban dau
+    dk = 1;
     n = 0;
+    p = new int[n];
 
     // In bang menu
     for (int i = 0; i < 50; ++i)
@@ -32,25 +34,27 @@ int main()
          << "Lop: 18TCLC-DT1" << endl
          << "Nhom: 18N13" << endl
          << "Ma sinh vien: 102180118" << endl
-         << "Ten file: 18N13_MaiTheDung.cpp" << endl
+         << "Ten file: 18N13_MaiTheDung.cpp"
          << endl;
-    for (int i = 0; i < 50; ++i)
-        cout << "*";
-    cout << endl
-         << endl
-         << "Vui long nhap tuy chon ben duoi; Go so thu tu va" << endl
-         << "Nhan phim <Enter>:" << endl
-         << "1. Nhap mang" << endl
-         << "2. Xuat mang" << endl
-         << "3. Chen phan tu vao vi tri thu k. In ket qua" << endl
-         << "4. Xoa phan tu tai vi tri thu k. In ket qua" << endl
-         << "5. Sap xep mang. In ket qua" << endl
-         << "6. Tim kiem vi tri phan tu. In ket qua" << endl
-         << "7. Cap nhat phan tu thu k. In ket qua" << endl
-         << "8. Thoat chuong trinh" << endl;
 
     do
     {
+        cout << endl;
+        for (int i = 0; i < 50; ++i)
+            cout << "*";
+        cout
+            << endl
+            << "Vui long nhap tuy chon ben duoi; Go so thu tu va" << endl
+            << "Nhan phim <Enter>:" << endl
+            << "1. Nhap mang" << endl
+            << "2. Xuat mang" << endl
+            << "3. Chen phan tu vao vi tri thu k. In ket qua" << endl
+            << "4. Xoa phan tu tai vi tri thu k. In ket qua" << endl
+            << "5. Sap xep mang. In ket qua" << endl
+            << "6. Tim kiem vi tri phan tu. In ket qua" << endl
+            << "7. Cap nhat phan tu thu k. In ket qua" << endl
+            << "8. Thoat chuong trinh" << endl;
+
         // Khai bao bien
         int select;
 
@@ -106,7 +110,8 @@ int main()
         case 5:
             if (!n)
             {
-                cout << "Mang chua duoc nhap hoac khong co phan tu. Moi ban nhap lai mang!" << endl;
+                cout << "Mang chua duoc nhap hoac khong co phan tu." << endl
+                     << "Moi ban nhap lai mang!" << endl;
                 break;
             }
             SelectionSort(p, n);
@@ -134,6 +139,7 @@ int main()
         case 8:
             dk = 0;
             cout << "Cam on ban da thuc hien chuong trinh. Good luck today ^^!";
+            break;
         default:
             cout << "Nhap sai lua chon. Moi ban nhap lai!";
             break;
@@ -199,7 +205,7 @@ void SelectionSort(int *p, int n)
         for (int j = i + 1; j < n; ++j)
             if (*(p + i) > *(p + j))
                 Swap(*(p + i), *(p + j));
-    cout << "Sau khi sap xep:" << endl;
+    cout << "Mang sau khi sap xep:" << endl;
     OutArray(p, n);
 }
 
@@ -220,8 +226,8 @@ void InterpolationSearch(int *p, int n, int valueSearch)
         if (*(p + m) == valueSearch)
         {
             cout << "Ket qua can tim:" << endl
-                 << "Index = " << m << endl
-                 << "Value = " << *(p + m) << endl;
+                 << "Vi tri = " << m + 1 << endl
+                 << "Gia tri = " << *(p + m) << endl;
             return;
         }
 

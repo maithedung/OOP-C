@@ -224,6 +224,16 @@ void Show_1(int x, int y, int z)
 // - &: Toan tu dia chi
 // - &x: Dia chi of bien x
 // - p = &x === int *p = &x
+int main()
+{
+    int x = 5;
+    int *a = &x;
+    // cout << *a << endl
+    //      << x << endl
+    //      << a;
+    cout << *a << endl
+         << x;
+}
 */
 
 /*
@@ -259,4 +269,127 @@ int main()
 // 18. Point - Use typedef: typedef int *Q
 */
 
+/*
+// 19. Array
+int main()
+{
+    int a[5] = {1, 2, 3, 4, 5};
+    cout << a << endl;
+    cout << &a[4] << endl;
 
+    // cout << a;
+    // for (int i = 0; i < 5; i++)
+    // cout << a[i] << endl;
+}
+*/
+
+/*
+// 20. Type Data
+
+Kieu du lieu nguyen thuy:
+1. boolean
+2. void
+3. char
+4. int
+5. float
+6. double
+
+Phan mo rong cua kieu du lieu
+1. signed
+2. unsigned
+3. short
+4. long
+
+int main()
+{
+    int
+    long int
+}
+*/
+
+/*
+// 21. Function Pointer - Khai bao con tro ham
+int Show(int x)
+{
+    return x;
+}
+
+void Swap(int &x, int &y)
+{
+    int t = x;
+    x = y;
+    y = t;
+}
+
+int main()
+{
+    int m, n;
+
+    m = 10;
+    n = 5;
+
+    void (*pSwap)(int &, int &) = Swap;
+    (*pSwap)(m, n);
+
+    cout << m << endl
+         << n;
+
+    // int n = 5;
+    // cout << Show(n) << endl;
+    // cout << Show;
+
+    return 0;
+}
+
+*/
+
+/*
+// 22. Function Pointer - Use con tro ham lam doi so
+void Show(int *p, int length)
+{
+    for (int i = 0; i < length; i++)
+        cout << setw(3) << *(p + i);
+}
+
+int main()
+{
+    int *p;
+
+    p = new int[5];
+    for (int i = 0; i < 5; i++)
+        *(p + i) = i;
+    Show(p, 5);
+    return 0;
+}
+*/
+
+// 23. Static & Dynamic Allowcation
+int main()
+{
+    // int *p1 = new int;
+    // *p1 = 1;
+    // cout << *p1 << " " << p1 << endl;
+    // delete p1;
+    // cout << *p1 << " " << p1 << endl;
+
+    int *p2 = new int[3];
+    for (int i = 0; i < 3; i++)
+        *(p2 + i) = i;
+
+    for (int i = 0; i < 3; i++)
+        cout << *(p2 + i) << " " << p2 + i << endl;
+
+    cout << endl;
+
+    delete[] p2;
+
+    for (int i = 0; i < 3; i++)
+        cout << *(p2 + i) << " " << p2 + i << endl;
+
+    return 0;
+}
+
+// 24. Toan tu truy cap
+// - Ten lop: ::
+// - Doi tuong: .
+// Con tro: ->
