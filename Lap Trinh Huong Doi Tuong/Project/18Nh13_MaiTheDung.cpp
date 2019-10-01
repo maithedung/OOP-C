@@ -226,7 +226,7 @@ void InterpolationSearch(int *p, int n, int valueSearch)
         if (*(p + m) == valueSearch)
         {
             cout << "Ket qua can tim:" << endl
-                 << "Vi tri = " << m + 1 << endl
+                 << "Vi tri can tim = " << m + 1 << endl
                  << "Gia tri = " << *(p + m) << endl;
             return;
         }
