@@ -3,7 +3,6 @@ using namespace std;
 
 void ToHop(int i, int s[], int n, int k);
 void Out(int s[], int n);
-void Init(int n);
 
 int main()
 {

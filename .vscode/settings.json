@@ -2,7 +2,23 @@
     "files.associations": {
         "iosfwd": "cpp",
         "ostream": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "new": "cpp",
+        "iomanip": "cpp"
     },
-    "C_Cpp.errorSquiggles": "Disabled"
+    "C_Cpp.errorSquiggles": "Disabled",
+    "sqltools.connections": [
+        {
+            "connectionTimeout": 1,
+            "database": "database",
+            "dialect": "MSSQL",
+            "isActive": false,
+            "isConnected": false,
+            "name": "database",
+            "password": "dung1505",
+            "port": 1433,
+            "server": "localhost",
+            "username": "maithedung"
+        }
+    ]
 }

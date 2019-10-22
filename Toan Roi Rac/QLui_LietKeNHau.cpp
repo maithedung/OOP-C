@@ -6,6 +6,7 @@ void Out(int s[], int n);
 void Init(int n);
 
 int A[100], B[100], C[100];
+int count = 0;
 
 int main()
 {
@@ -14,6 +15,7 @@ int main()
     int s[n + 1];
     Init(n);
     XepHau(1, s, n);
+    cout << count;
     return 0;
 }
 
@@ -53,4 +55,5 @@ void Out(int s[], int n)
     for (int i = 1; i <= n; i++)
         cout << s[i];
     cout << endl;
+    ++count;
 }
