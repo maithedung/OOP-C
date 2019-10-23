@@ -4,7 +4,8 @@
         "ostream": "cpp",
         "iostream": "cpp",
         "new": "cpp",
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "random": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled",
     "sqltools.connections": [

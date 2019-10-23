@@ -31,7 +31,7 @@ ostream &operator<<(ostream &out, const Vector &v)
 {
     for (int i = 0; i < v.size; ++i)
         out << *(v.data + i) << " ";
-    return out;
+    return out; 
 }
 
 istream &operator>>(istream &in, Vector &v)

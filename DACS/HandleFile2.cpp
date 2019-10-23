@@ -8,8 +8,7 @@ int main ()
    char data[100];
 
    // mo mot file trong che do write.
-   ofstream outfile;
-   outfile.open("vietjack.dat");
+   ofstream outfile("vietjack.dat");
 
    cout << "Ghi du lieu toi file!" << endl;
    cout << "Nhap ten cua ban: "; 
