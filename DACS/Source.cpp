@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define e 0.00001
+#define e 0.001
 
 class List
 {
@@ -98,19 +98,21 @@ void Init()
     srand(time(NULL));
     int n = rand() % 10 + 3;
     outFile << n << endl;
-    int f = rand() % 2;
-    while (f == 0)
-        f = rand() % 2;
-    outFile << f << " ";
+    int f;
+    do
+        f = rand() % 20 - 10;
+    while (f == 0);
+    outFile
+        << f << " ";
     for (int i = 0; i < n; ++i)
-        outFile << rand() % 2 << " ";
+        outFile << rand() % 20 - 10 << " ";
 
     outFile.close();
 }
 
 void Stars()
 {
-    for (int i = 0; i < 30; ++i)
+    for (int i = 0; i < 60; ++i)
         cout << "*";
     cout << endl;
 }
@@ -128,26 +130,28 @@ void OutFile(float x)
 
 int main()
 {
-    // Init();
+    Init();
     List l;
     cout << l << endl;
     Stars();
 
     float a, b;
 
+    cout << "Enter values a and b such that f (a) * f (b) = 0" << endl;
     do
     {
         printf("Enter a = ");
         scanf("%f", &a);
+        cout << "f(" << a << ") = " << l.Function(a) << endl;
         printf("Enter b = ");
         scanf("%f", &b);
-
+        cout << "f(" << b << ") = " << l.Function(b) << endl;
+        Stars();
         if (l.Function(a) * l.Function(b) > 0)
             cout << "Enter the wrong range. Retype:" << endl;
-        Stars();
     } while (l.Function(a) * l.Function(b) > 0);
 
-    cout << "Result: " << l.Dual(a, b) << endl;
+    cout << "Result: x = " << l.Dual(a, b) << endl;
     OutFile(l.Dual(a, b));
 
     return 0;
