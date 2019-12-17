@@ -83,7 +83,7 @@ int main()
     d.addTeacher(t3);
     cout << d;
 
-    cout << *t1 << *t2 << *t3;
+    // cout << *t1 << *t2 << *t3;
     delete t1;
     delete t2;
     delete t3;

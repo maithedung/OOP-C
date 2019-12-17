@@ -186,6 +186,8 @@ int main()
     Point2D p1(1, 2);
     // Point2D p2(2);
     Point2D p3(2, 3);
+
+    p3 = p3 + 5;
     // p1.xVal = 5;
     // p1.yVal = 6;
 

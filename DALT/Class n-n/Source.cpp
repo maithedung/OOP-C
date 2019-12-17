@@ -8,7 +8,7 @@ class Patient
 private:
     string nameP;
     vector<Doctor*>doctor;
-    void addDoctor(Doctor*)
+    void addDoctor(Doctor*);
 public:
     Patient(/* args */);
     ~Patient();

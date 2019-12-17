@@ -1,11 +1,18 @@
 #include <iostream>
 using namespace std;
+float x;
 
 int main()
 {
-    cout << "Dung" << endl;
-    int a = 5;
-    cout << a;
+    int n, i, sum;
+    i = 1;
+    sum = 1;
+    cin>>n;
+    while (sum<n){
+        sum+=i;
+        ++i;
+        if(sum==n)
+    }
 
-    return 0;
+        return 0;
 }
