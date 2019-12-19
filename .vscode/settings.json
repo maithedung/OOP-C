@@ -5,7 +5,12 @@
         "iostream": "cpp",
         "new": "cpp",
         "iomanip": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "*.tcc": "cpp",
+        "fstream": "cpp",
+        "bitset": "cpp",
+        "forward_list": "cpp",
+        "future": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled",
     "sqltools.connections": [
