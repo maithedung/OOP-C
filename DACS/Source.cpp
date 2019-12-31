@@ -2,11 +2,6 @@
 using namespace std;
 
 #define e 0.001
-const string fileIn = "DUNG.INP";
-const string fileOut = "DUNG.OUT";
-
-string con;
-float a, b;
 
 // List.h
 class List
@@ -16,18 +11,18 @@ private:
     int *p;
 
 public:
-    List();
+    List(const string &fileIn);
     ~List();
 
     double Function(const float x);
     float BisectionMethod(float a, float b);
-    void OutFile(const float x);
+    void OutFile(const float x, const string &fileOut);
 
     friend ostream &operator<<(ostream &out, const List &l);
 };
 
 // List.cpp
-List::List()
+List::List(const string &fileIn)
 {
     ifstream inFile(fileIn);
     if (inFile.fail())
@@ -79,7 +74,7 @@ float List::BisectionMethod(float a, float b)
     return res;
 }
 
-void List::OutFile(const float x)
+void List::OutFile(const float x, const string &fileOut)
 {
     ofstream outFile(fileOut);
     if (outFile.fail())
@@ -119,17 +114,19 @@ ostream &operator<<(ostream &out, const List &l)
     return out;
 }
 
-void Init();
-void PrintFunc();
-void AutoCheck();
-void RangeAB();
-void PrintRes();
+// main.cpp
+void Init(const string &fileIn);
+void PrintFunc(List &l);
+void AutoCheck(List &l);
+void RangeAB(List &l, const string &fileOut);
+void PrintRes(const string &fileOut);
 
-void Stars();
-void Continue();
-void Menu();
+// functionExtra.h
+void Stars(int n = 50);
+void Continue(string &con);
+void Menu(const string &fileIn, const string &fileOut);
 
-void Init()
+void Init(const string &fileIn)
 {
     ofstream outFile(fileIn);
     if (outFile.fail())
@@ -155,25 +152,20 @@ void Init()
     outFile.close();
 }
 
-void PrintFunc()
+void PrintFunc(List &l)
 {
-    List l;
-    Stars();
+    // Stars();
     cout << l << endl;
 }
 
-void AutoCheck()
+void AutoCheck(List &l)
 {
-    List l;
-    int step;
-
-    con = "y";
-
-    Stars();
-
     cout << "\t\t   Enter a = ";
+    float a;
     cin >> a;
+
     cout << "\t\t   Enter b = ";
+    float b;
     cin >> b;
 
     if (a > b)
@@ -194,7 +186,44 @@ void AutoCheck()
     cout << "\t\t   No solution was found in the range " << a << " -->  " << b << endl;
 }
 
-void PrintRes()
+void RangeAB(List &l, const string &fileOut)
+{
+    Stars();
+    float a;
+    float b;
+    string con;
+
+    do
+    {
+        cout << "\t\t   Enter a = ";
+
+        cin >> a;
+        cout << "\t\t   f(" << a << ") = " << l.Function(a) << endl;
+
+        cout << "\t\t   Enter b = ";
+
+        cin >> b;
+        cout << "\t\t   f(" << b << ") = " << l.Function(b) << endl;
+
+        if (l.Function(a) * l.Function(b) > 0)
+        {
+            cout << "\t\t   There is no solution in the range a to b."
+                 << endl
+                 << "\t\t   Would you like to retype?" << endl;
+            Continue(con);
+            if (con == "N" || con == "n")
+            {
+                cout << "\t\t   Thank you for using the program (^_^)!." << endl;
+                exit(0);
+            }
+        }
+    } while (l.Function(a) * l.Function(b) > 0);
+    Stars();
+    cout << "\t\t   Find solution x = " << l.BisectionMethod(a, b) << endl;
+    l.OutFile(l.BisectionMethod(a, b), fileOut);
+}
+
+void PrintRes(const string &fileOut)
 {
     ifstream inFile(fileOut);
     if (inFile.fail())
@@ -207,45 +236,15 @@ void PrintRes()
     cout << "\t\t   Solution x = " << n << endl;
 }
 
-void RangeAB()
-{
-    List l;
-    Stars();
-    do
-    {
-        cout << "\t\t   Enter a = ";
-        cin >> a;
-        cout << "\t\t   f(" << a << ") = " << l.Function(a) << endl;
-        cout << "\t\t   Enter b = ";
-        cin >> b;
-        cout << "\t\t   f(" << b << ") = " << l.Function(b) << endl;
-        if (l.Function(a) * l.Function(b) > 0)
-        {
-            cout << "\t\t   There is no solution in the range a to b."
-                 << endl
-                 << "\t\t   Would you like to retype?" << endl;
-            Continue();
-            if (con == "N" || con == "n")
-            {
-                cout << "\t\t   Thank you for using the program (^_^)!." << endl;
-                exit(0);
-            }
-        }
-    } while (l.Function(a) * l.Function(b) > 0);
-    Stars();
-    cout << "\t\t   Find solution x = " << l.BisectionMethod(a, b) << endl;
-    l.OutFile(l.BisectionMethod(a, b));
-}
-
-void Stars()
+void Stars(int n)
 {
     cout << "\t\t";
-    for (int i = 0; i < 50; ++i)
+    for (int i = 0; i < n; ++i)
         cout << "*";
     cout << endl;
 }
 
-void Continue()
+void Continue(string &con)
 {
     Stars();
     cout << "\t\t   Enter Y or N to continue: ";
@@ -259,77 +258,93 @@ void Continue()
     return;
 }
 
-void Menu()
+void Menu(const string &fileIn, const string &fileOut)
 {
     int sel;
+    string con;
 
     while (true)
     {
         system("clear");
         Stars();
-        cout << "\t\t  1. Initialize the function." << endl;
-        cout << "\t\t  2. Print function to the screen." << endl;
-        cout << "\t\t  3. Auto check the solution of the function." << endl;
-        cout << "\t\t  4. Enter any range a & b." << endl;
-        cout << "\t\t  5. Print results to the screen." << endl;
-        cout << "\t\t  0. Exit the program." << endl;
+        cout << "\t\t|  1. Initialize the function.                   |" << endl;
+        cout << "\t\t|  2. Print function to the screen.              |" << endl;
+        cout << "\t\t|  3. Auto check the solution of the function.   |" << endl;
+        cout << "\t\t|  4. Enter any range a & b.                     |" << endl;
+        cout << "\t\t|  5. Print results to the screen.               |" << endl;
+        cout << "\t\t|  0. Exit the program.                          |" << endl;
         Stars();
         cout << "\t\t   Enter your selection: ";
         cin >> sel;
         switch (sel)
         {
         case 1:
-            Init();
-            Continue();
+        {
+            Init(fileIn);
+            Continue(con);
             while (con == "Y" || con == "y")
             {
-                Init();
-                Continue();
+                Init(fileIn);
+                Continue(con);
             }
-            break;
+        }
+        break;
         case 2:
-            PrintFunc();
-            Continue();
+        {
+            Stars();
+            List l(fileIn);
+            PrintFunc(l);
+            Continue(con);
             while (con == "Y" || con == "y")
             {
-                PrintFunc();
-                Continue();
+                PrintFunc(l);
+                Continue(con);
             }
-            break;
+        }
+        break;
         case 3:
-            AutoCheck();
-            Continue();
+        {
+            Stars();
+            List l(fileIn);
+            AutoCheck(l);
+            Continue(con);
             while (con == "Y" || con == "y")
             {
-                AutoCheck();
-                Continue();
+                AutoCheck(l);
+                Continue(con);
             }
-            break;
+        }
+        break;
         case 4:
-            RangeAB();
-            Continue();
+        {
+            List l(fileIn);
+            RangeAB(l, fileOut);
+            Continue(con);
             if (con == "N" || con == "n")
             {
                 cout << "\t\t   Thank you for using the program (^_^)!." << endl;
                 exit(0);
             }
-            break;
+        }
+        break;
         case 5:
-            PrintRes();
-            Continue();
+        {
+            PrintRes(fileOut);
+            Continue(con);
             while (con == "Y" || con == "y")
             {
-                PrintRes();
-                Continue();
+                PrintRes(fileOut);
+                Continue(con);
             }
-            break;
+        }
+        break;
         case 0:
             Stars();
             cout << "\t\t   Thank you for using the program (^_^)!." << endl;
             exit(0);
         default:
             cout << "\t\t   Wrong selection. Please Re-enter!" << endl;
-            Continue();
+            Continue(con);
             if (con == "N" || con == "n")
             {
                 cout << "\t\t   Thank you for using the program (^_^)!." << endl;
@@ -342,7 +357,16 @@ void Menu()
 
 int main()
 {
-    Menu();
+    Stars();
+    string fileIn;
+    cout << "\t\t   Enter the input file name: ";
+    cin >> fileIn;
+    string fileOut;
+    cout << "\t\t   Enter the output file name: ";
+    cin >> fileOut;
+    Stars();
+
+    Menu(fileIn, fileOut);
 
     return 0;
 }

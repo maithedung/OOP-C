@@ -64,14 +64,27 @@ void Add(const Person &p)
 
 int main()
 {
-    Person p1(2), p2(2, 3);
-    Person p3;
-    Person p4(p1);
-    p1.Show();
-    Add(p1);
-    // p2.Show();
-    // p3.Show();
-    p4.Show();
+    // Person p1(2), p2(2, 3);
+    // Person p3;
+    // Person p4(p1);
+    // p1.Show();
+    // Add(p1);
+    // // p2.Show();
+    // // p3.Show();
+    // p4.Show();
+    string s = "GM001";
+    int k = 0;
+    int dem = 1;
+    for (int i = s.length(); i > 0; --i)
+        if (s[i] <= '9' && s[i] >= '0')
+        {
+            cout << int(s[i] - 48) << endl;
+
+            k += int(s[i] - 48) * dem;
+            dem *= 10;
+        }
+
+    cout << k;
 
     return 0;
 }
